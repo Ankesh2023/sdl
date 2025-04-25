@@ -1,0 +1,15 @@
+systemctl daemon-reload
+sudo systemctl restart systemd-journald
+
+
+
+# Flush and vacuum all journal logs
+sudo journalctl --flush --rotate
+sudo journalctl --vacuum-time=1s
+
+# Manually delete remaining journal files
+sudo rm -rf /var/log/journal/*
+sudo rm -rf /run/log/journal/*
+
+# Restart journald to reset logs
+sudo systemctl restart systemd-journald
